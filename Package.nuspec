@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>Zhusmelb.AspNet.Mvc.Bootstrap</id>
-    <version>0.0.4</version>
+    <version>$version$</version>
     <authors>Yu Zhu</authors>
     <owners>Zhusmelb Computer Software Systems</owners>
     <title>ASP.NET MVC porject bootstrapping package</title>
