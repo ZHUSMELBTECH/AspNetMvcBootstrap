@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>Zhusmelb.AspNet.Mvc.Bootstrap</id>
+    <version>0.0.2</version>
+    <authors>Yu Zhu</authors>
+    <owners>Zhusmelb Computer Software Systems</owners>
+    <license type="expression">MIT</license>
+    <projectUrl>http://www.zhusmelb.com/</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Package contains sources and </description>
+    <releaseNotes>Summary of changes made in this release of the package.</releaseNotes>
+    <copyright>Copyright 2019</copyright>
+    <tags>ASP.NET Autofac WebActivatorEx NLog</tags>
+    <developmentDependency>true</developmentDependency>
+    <dependencies>
+      <dependency id="Autofac" version="4.0.1" />
+      <dependency id="Autofac.Mvc5" version="4.0.2" />
+      <dependency id="Microsoft.Extensions.Logging" version="2.2.0" />
+      <dependency id="NLog" version="4.6.5" />
+      <dependency id="NLog.Extensions.Logging" version="1.5.4" />
+      <dependency id="NLog.Web" version="4.8.4" />
+      <dependency id="WebActivatorEx" version="2.2.0" />
+    </dependencies>
+  </metadata>
+</package>
