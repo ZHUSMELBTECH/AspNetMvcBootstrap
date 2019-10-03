@@ -2,14 +2,14 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>Zhusmelb.AspNet.Mvc.Bootstrap</id>
-    <version>0.0.2</version>
+    <version>0.0.4</version>
     <authors>Yu Zhu</authors>
     <owners>Zhusmelb Computer Software Systems</owners>
+    <title>ASP.NET MVC porject bootstrapping package</title>
     <license type="expression">MIT</license>
     <projectUrl>http://www.zhusmelb.com/</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>Package contains sources and </description>
-    <releaseNotes>Summary of changes made in this release of the package.</releaseNotes>
+    <description>Setup a ASP.NET MVC project with packages that conforms to common patterns</description>
     <copyright>Copyright 2019</copyright>
     <tags>ASP.NET Autofac WebActivatorEx NLog</tags>
     <developmentDependency>true</developmentDependency>
