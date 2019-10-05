@@ -10,10 +10,17 @@ trigger:
 pool: Default
 
 steps:
-- powershell: .\.build\build.ps1
-  displayName: 'Run a one-line script'
-
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+- powershell: ./.build/build.ps1
+  displayName: 'Pack nuget package'
+- powershell: Write-Host "Nuget package built $(packageFileName)"
+- task: CopyFiles@2
+  inputs: 
+    sourceFolder: './.packages/$(packageFileName).nupkg'
+    contents: '*.nupkg'
+    targetFolder: '$(Build.ArtifactStagingDirectory)'
+  
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathToPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'nugetPackage'
+    
