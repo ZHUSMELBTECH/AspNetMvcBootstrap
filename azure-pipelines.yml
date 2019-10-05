@@ -10,7 +10,7 @@ trigger:
 pool: Default
 
 steps:
-- script: echo Hello, world!
+- powershell: .\.build\build.ps1
   displayName: 'Run a one-line script'
 
 - script: |
