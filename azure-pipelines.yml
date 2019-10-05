@@ -15,12 +15,11 @@ steps:
 - powershell: Write-Host "Nuget package built $(packageFileName)"
 - task: CopyFiles@2
   inputs: 
-    sourceFolder: './.packages/$(packageFileName).nupkg'
-    contents: '*.nupkg'
+    sourceFolder: './.packages/'
+    contents: '$(packageFileName)'
     targetFolder: '$(Build.ArtifactStagingDirectory)'
   
 - task: PublishBuildArtifacts@1
   inputs:
     PathToPublish: '$(Build.ArtifactStagingDirectory)'
     ArtifactName: 'nugetPackage'
-    
