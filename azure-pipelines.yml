@@ -20,12 +20,14 @@ stages:
     - powershell: ./.build/setup.ps1
       displayName: Prepare directories
     - powershell: ./.build/build.ps1
-      displayName: 'Pack nuget package'
-    - task: CopyFiles@2
-      inputs: 
-        sourceFolder: './.packages/'
-        contents: '*.nupkg'
-        targetFolder: '$(Build.ArtifactStagingDirectory)'
+      displayName: Retrieve package version from GIT
+    - task: NugetCommand@2
+      displayName: Pack nuget package
+      inputs:
+        command: pack
+        packagesToPack: ./PackageContent/Package.nuspec
+        versioningScheme: byEnvVar
+        versionEnvVar: packageVersion
     - task: PublishBuildArtifacts@1
       inputs:
         PathToPublish: '$(Build.ArtifactStagingDirectory)'
