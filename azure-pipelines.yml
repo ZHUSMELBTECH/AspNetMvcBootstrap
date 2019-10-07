@@ -31,7 +31,8 @@ stages:
         PathToPublish: '$(Build.ArtifactStagingDirectory)'
         ArtifactName: 'nugetPackage'
 
-- stage: Deploy-Dev
+- stage: Deploy_Dev
+  displayName: Deploy Development
   dependsOn: Build
   jobs: 
   - job: D2AzureArtifacts
