@@ -8,7 +8,7 @@ trigger:
 - features/*
 
 variables:
-  agentImage: "vs2017-win2016"
+  agentImage: "windows-latest"
 
 stages:
 - stage: Build
