@@ -7,24 +7,41 @@ trigger:
 - master
 - features/*
 
-jobs:
-- job: SetupJob
-  pool: Default
-  steps:
-  - powershell: ./.build/setup.ps1
+variables:
+  agentImage: "vs2017-win2016"
 
-- job: BuildJob
-  pool: Default
-  dependsOn: SetupJob
-  steps:
-  - powershell: ./.build/build.ps1
-    displayName: 'Pack nuget package'
-  - task: CopyFiles@2
-    inputs: 
-      sourceFolder: './.packages/'
-      contents: '*.nupkg'
-      targetFolder: '$(Build.ArtifactStagingDirectory)'
-  - task: PublishBuildArtifacts@1
-    inputs:
-      PathToPublish: '$(Build.ArtifactStagingDirectory)'
-      ArtifactName: 'nugetPackage'
+stages:
+- stage: Build
+  jobs:
+  - job: BuildJob
+    pool:
+      vmImage: $(angentImage)
+    steps:
+    - powershell: ./.build/setup.ps1
+      displayName: Prepare directories
+    - powershell: ./.build/build.ps1
+      displayName: 'Pack nuget package'
+    - task: CopyFiles@2
+      inputs: 
+        sourceFolder: './.packages/'
+        contents: '*.nupkg'
+        targetFolder: '$(Build.ArtifactStagingDirectory)'
+    - task: PublishBuildArtifacts@1
+      inputs:
+        PathToPublish: '$(Build.ArtifactStagingDirectory)'
+        ArtifactName: 'nugetPackage'
+
+- stage: Deploy-Dev
+  dependsOn: Build
+  jobs: 
+  - job: D2AzureArtifacts
+    displayName: Deploy nuget package to Azure Artifacts
+    pool:
+      vmImage: $(angentImage)
+    steps:
+    - task: NugetCommand@2
+      displayName: "Nuget push to Azure Artifacts"
+      inputs:
+        command: push
+        publishVstsFeed: zhusmelbtech
+
