@@ -19,6 +19,7 @@ stages:
     steps:
     - powershell: ./.build/setup.ps1
       displayName: Prepare directories
+    - powershell: choco install nuget.commandline
     - powershell: ./.build/build.ps1
       displayName: Retrieve package version from GIT
     - task: NugetCommand@2
