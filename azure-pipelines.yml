@@ -12,7 +12,6 @@ jobs:
   pool: Default
   steps:
   - powershell: ./.build/setup.ps1
-    workingDirectory: $(build.sourceDirectory)
 
 - job: BuildJob
   pool: Default
