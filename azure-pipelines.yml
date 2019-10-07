@@ -7,19 +7,25 @@ trigger:
 - master
 - features/*
 
-pool: Default
+jobs:
+- job: SetupJob
+  pool: Default
+  steps:
+  - powershell: ./.build/setup.ps1
+    workingDirectory: $(build.sourceDirectory)
 
-steps:
-- powershell: ./.build/build.ps1
-  displayName: 'Pack nuget package'
-- powershell: Write-Host "Nuget package built $(packageFileName)"
-- task: CopyFiles@2
-  inputs: 
-    sourceFolder: './.packages/'
-    contents: '$(packageFileName)'
-    targetFolder: '$(Build.ArtifactStagingDirectory)'
-  
-- task: PublishBuildArtifacts@1
-  inputs:
-    PathToPublish: '$(Build.ArtifactStagingDirectory)'
-    ArtifactName: 'nugetPackage'
+- job: BuildJob
+  pool: Default
+  dependsOn: SetupJob
+  steps:
+  - powershell: ./.build/build.ps1
+    displayName: 'Pack nuget package'
+  - task: CopyFiles@2
+    inputs: 
+      sourceFolder: './.packages/'
+      contents: '*.nupkg'
+      targetFolder: '$(Build.ArtifactStagingDirectory)'
+  - task: PublishBuildArtifacts@1
+    inputs:
+      PathToPublish: '$(Build.ArtifactStagingDirectory)'
+      ArtifactName: 'nugetPackage'
