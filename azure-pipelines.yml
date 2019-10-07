@@ -15,7 +15,7 @@ stages:
   jobs:
   - job: BuildJob
     pool:
-      vmImage: $(angentImage)
+      vmImage: $(agentImage)
     steps:
     - powershell: ./.build/setup.ps1
       displayName: Prepare directories
