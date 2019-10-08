@@ -45,6 +45,15 @@ stages:
     pool:
       vmImage: $(agentImage)
     steps:
+    - task: NuGetToolInstaller@0
+      inputs:
+        versionSpec: '5.3.0'
+    - task: DownloadBuildArtifacts@0
+      inputs: 
+        buildType: current
+        downloadType: single
+        artifactName: nugetPackage
+        downloadPath: $(build.ArtifactStagingDirectory)
     - task: NugetCommand@2
       displayName: "Nuget push to Azure Artifacts"
       inputs:
