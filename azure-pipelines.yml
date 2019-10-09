@@ -6,6 +6,9 @@
 trigger:
 - master
 - features/*
+pr:
+- master
+- develop
 
 variables:
   nugetVersion: '5.3.0'
