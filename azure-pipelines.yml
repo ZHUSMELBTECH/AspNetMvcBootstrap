@@ -20,7 +20,7 @@ stages:
     steps:
     - powershell: ./.build/setup.ps1
       displayName: Prepare directories
-    - template: '.build/UpdateNuget-Template.yml'
+    - template: ./.build/UpdateNuget-Template.yml
       parameters:
         nugetVersion: $(nugetVersion)
     - powershell: ./.build/build.ps1
@@ -46,7 +46,7 @@ stages:
     pool:
       vmImage: $(agentImage)
     steps:
-    - template: '.build/UpdateNuget-Template.yml'
+    - template: ./.build/UpdateNuget-Template.yml
       parameters:
         nugetVersion: $(nugetVersion)
     - task: DownloadBuildArtifacts@0
