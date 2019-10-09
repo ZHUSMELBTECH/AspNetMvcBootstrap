@@ -8,6 +8,7 @@ trigger:
 - features/*
 
 variables:
+  nugetVersion: '5.3.0'
   agentImage: "windows-latest"
 
 stages:
@@ -19,9 +20,9 @@ stages:
     steps:
     - powershell: ./.build/setup.ps1
       displayName: Prepare directories
-    - task: NuGetToolInstaller@0
-      inputs:
-        versionSpec: '5.3.0'
+    - template: '.build/UpdateNuget-Template.yml'
+      parameters:
+        nugetVersion: $(nugetVersion)
     - powershell: ./.build/build.ps1
       displayName: Retrieve package version from GIT
     - task: NugetCommand@2
@@ -45,9 +46,9 @@ stages:
     pool:
       vmImage: $(agentImage)
     steps:
-    - task: NuGetToolInstaller@0
-      inputs:
-        versionSpec: '5.3.0'
+    - template: '.build/UpdateNuget-Template.yml'
+      parameters:
+        nugetVersion: $(nugetVersion)
     - task: DownloadBuildArtifacts@0
       inputs: 
         buildType: current

@@ -1,0 +1,7 @@
+parameters:
+  nugetVersion: '5.3.0'
+
+steps:
+- task: NuGetToolInstaller@0
+  inputs:
+    versionSpec: {{ parameters.nugetVersion }}
