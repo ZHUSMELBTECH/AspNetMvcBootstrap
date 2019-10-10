@@ -43,7 +43,7 @@ stages:
 - stage: Deploy_Dev
   displayName: Deploy Development
   dependsOn: Build
-  condition: and(succeeded(), not(eq(variables['system.PullRequest.PullRequestId'], $ {{ Null }})))
+  condition: and(succeeded(), not(eq(variables['system.PullRequest.PullRequestId'], ${{ Null }})))
   jobs: 
   - job: D2AzureArtifacts
     displayName: Deploy nuget package to Azure Artifacts
