@@ -1,2 +1,8 @@
-mode: ContinuousDelivery
 increment: Patch
+branches:
+  develop:
+    regex: dev(elop)?(ment)?$
+  feature: 
+    regex: features?[/-]
+    mode: ContinuousDeployment
+    
